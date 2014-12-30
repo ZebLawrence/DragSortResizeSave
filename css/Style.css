@@ -1,0 +1,24 @@
+﻿body
+{
+}
+
+.grid-container,h3{
+	width:80%;
+	margin:auto;
+	border:1px solid blue;
+	min-height:100%;
+}
+
+.app{
+	width:198px;
+	height:198px;
+	float:left;
+	margin-bottom: 0px;
+	overflow:hidden;
+	padding:0px;
+}
+
+.app-placeholder-highlight.app{
+	/*background-color:#CCC;*/
+	padding:0px;
+}

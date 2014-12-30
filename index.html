@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Testing Grid Solution</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+	<h3>Packery with bespoke sorting being saved to local storage </h3>
+	<div id="app-container" class="grid-container clearfix"></div>
+	<div class="grid-container">
+		<button id="add-app" value="Add App">Add App</button>
+		<button id="delete-storage" value="delete">Delete saved state</button>
+	</div>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.min.js"></script>
+	<script type="text/javascript" src="packery.pkgd.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//simple function to build out the apps
+			//Adding a new note
+			var $container = $('#app-container');
+			var numOfApps = 10;
+			var pageAppNumber = 0;
+
+			if (localStorage.getItem('appLayout')) {			
+				console.log('There was somthing found in local storage so lets use it');
+				$container.html(localStorage.getItem('appLayout'));
+			}
+			else{
+				for (var i = 0; i < numOfApps; i++) {
+					var $appHTML = $('<div class="app alert alert-success"></div>');
+					var currentAppNumber = i+1;
+					var appText = 'An app yay. This is app number: ' + currentAppNumber;
+					$appHTML.text(appText);
+					$appHTML.attr('title',appText);
+					$container.append($appHTML);
+					pageAppNumber++;
+				}
+			}
+			//must be on page before the PageClass is loaded
+		});
+	</script>
+	<script type="text/javascript" src="PageClass.js"></script>
+</body>
+</html>
