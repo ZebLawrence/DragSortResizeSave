@@ -11,7 +11,6 @@
 		}
 		this.resizeOptions = {
 			resize: function(event,ui){_self.$appsContainer.packery( 'fit', event.target );},
-			//resize: function(event,ui){_self.$appsContainer.packery();}
 			grid: [ 100, 100 ]
 		}
 		this.dragableOptions = {
@@ -30,8 +29,7 @@
 	GridExamplePageClass.prototype.bindEvents = function () {
 		var _self = this;
 		var $apps = _self.$appsContainer.find('.app');
-
-		//init the masonry stuff
+		//init the packery stuff
 		_self.$appsContainer.packery(_self.packeryOptions);
 		//init the resizable
 		$apps.resizable(_self.resizeOptions);
@@ -58,12 +56,10 @@
 			window.localStorage.clear();
 			//add the current app html to local storage
 			localStorage.setItem('appLayout', ClonedContainer.html());
-
 		});
 
 ///Local Storage
 		_self.$appsContainer.packery( 'on', 'layoutComplete', function() {
-			console.log('Layout Complete');
 			var ClonedContainer = _self.$appsContainer.clone(true);
 			ClonedContainer.find('.ui-resizable-handle').remove();
 			ClonedContainer.find('.ui-resizable.ui-sortable-handle').removeClass('ui-resizable ui-sortable-handle');
@@ -74,14 +70,12 @@
 		});
 		//add ability to delete the current save app state
 		$('#delete-storage').on('click', function () {
-			console.log('delete storage clicked');
 			window.localStorage.clear();
 			location.reload();
 		});
 ////LocalStorage End
 		//A button to add an app to the page
 		$('#add-app').on('click',function(){
-			console.log('Adding app');
 			var currentAppNumber = _self.$appsContainer.find('.app').length + 1;
 			var $appHTML = $('<div class="app alert alert-success"></div>');
 			var appText = 'An app yay. This is app number: ' + currentAppNumber;
@@ -93,7 +87,6 @@
 			_self.$appsContainer.packery( 'bindUIDraggableEvents', $appHTML );
 			_self.$appsContainer.packery( 'appended', $appHTML );
 		});
-
 	};
 
 	window.GridExamplePageClass = new GridExamplePageClass();
